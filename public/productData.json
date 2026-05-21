@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "name": "UV Protection Sunglasses",
+    "brand": "SunShade",
+    "price": 15,
+    "rating": 4.7,
+    "stock": 10,
+    "description": "Stylish UV protection sunglasses perfect for summer outings.",
+    "image": "https://i.postimg.cc/8cQ2VGKQ/sunglasses.png",
+    "category": "Accessories"
+  },
+  {
+    "id": 2,
+    "name": "Beach Straw Hat",
+    "brand": "SunnyWear",
+    "price": 20,
+    "rating": 4.5,
+    "stock": 14,
+    "description": "Lightweight straw hat designed for beach vacations and sunny days.",
+    "image": "https://i.postimg.cc/Z5Lr0xwM/hat.png",
+    "category": "Fashion"
+  },
+  {
+    "id": 3,
+    "name": "Summer Floral Dress",
+    "brand": "BloomStyle",
+    "price": 35,
+    "rating": 4.8,
+    "stock": 8,
+    "description": "Comfortable floral dress made with breathable fabric for hot weather.",
+    "image": "https://i.postimg.cc/t4p9Q0M7/dress.png",
+    "category": "Clothing"
+  },
+  {
+    "id": 4,
+    "name": "Portable Mini Fan",
+    "brand": "CoolBreeze",
+    "price": 12,
+    "rating": 4.4,
+    "stock": 20,
+    "description": "Rechargeable portable fan ideal for travel and outdoor activities.",
+    "image": "https://i.postimg.cc/J7m7T8Xt/fan.png",
+    "category": "Electronics"
+  },
+  {
+    "id": 5,
+    "name": "Flip Flop Sandals",
+    "brand": "WalkEase",
+    "price": 18,
+    "rating": 4.3,
+    "stock": 16,
+    "description": "Soft and durable flip flop sandals for everyday summer comfort.",
+    "image": "https://i.postimg.cc/3R8qF8V5/sandals.png",
+    "category": "Footwear"
+  },
+  {
+    "id": 6,
+    "name": "Insulated Water Bottle",
+    "brand": "HydroFresh",
+    "price": 25,
+    "rating": 4.9,
+    "stock": 12,
+    "description": "Keeps drinks cold for up to 24 hours during summer adventures.",
+    "image": "https://i.postimg.cc/0N6Q0x6N/bottle.png",
+    "category": "Lifestyle"
+  }
+]
