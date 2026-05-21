@@ -1,12 +1,11 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import Image from "next/image";
-
 import sale from "@/assets/sale.png";
 import sunglass from "@/assets/sunglass.png";
 import summer from "@/assets/summer.png";
-import Footer from "@/components/Footer";
+import LeftSideBar from "@/components/homepage/LeftSideBar";
+import RightSideBar from "@/components/homepage/RightSideBar";
 
 export default function Home() {
   const slides = [
@@ -16,6 +15,7 @@ export default function Home() {
   ];
 
   const [current, setCurrent] = useState(0);
+  const [categories, setCategories] = useState([]);
 
   const nextSlide = () => {
     setCurrent((prev) => (prev + 1) % slides.length);
@@ -44,18 +44,46 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    async function getProducts() {
+      const res = await fetch("/productData.json");
+      const data = await res.json();
+
+      setCategories(data);
+    }
+
+    getProducts();
+  }, []);
+
+
   return (
-    <div className="relative w-full overflow-hidden">
-      <div className="flex justify-center">
-        <Image src={slides[current].image} alt={slides[current].alt} className="w-full h-140 object-contain p-6 md:p-13" />
+    <div>
+      <div className="relative w-full overflow-hidden">
+        <div className="flex justify-center">
+          <Image
+            src={slides[current].image}
+            alt={slides[current].alt}
+            className="w-full h-140 object-contain p-6 md:p-13"
+          />
+        </div>
+
+        <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 justify-between">
+          <button onClick={prevSlide} className="btn btn-circle bg-amber-300">
+            {" "}
+            ❮{" "}
+          </button>
+
+          <button onClick={nextSlide} className="btn btn-circle bg-amber-500">
+            {" "}
+            ❯{" "}
+          </button>
+        </div>
       </div>
 
-      <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 justify-between">
-        <button onClick={prevSlide} className="btn btn-circle bg-amber-300" >  ❮ </button>
-
-        <button onClick={nextSlide} className="btn btn-circle bg-amber-500" > ❯ </button>
+      <div className="container mx-auto grid grid-cols-4 gap-5 my-[60px]">
+        <LeftSideBar categories={categories} activeId={null}/>
+        <RightSideBar/>
       </div>
-      
     </div>
   );
 }

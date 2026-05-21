@@ -40,13 +40,9 @@ const Navbar = () => {
               </button>
             </>) : (
             <>
-              <button className="btn bg-yellow-500 text-black border-none">
-                <Navlink href="/login">Login</Navlink>
-              </button>
+              <button className="btn btn-warning text-xl font-bold p-5 "> <Navlink href="/login">Login Now!</Navlink> </button>
 
-              <button className="btn bg-orange-600 text-white border-none">
-                <Navlink href="/register">Register</Navlink>
-              </button>
+                <button className="btn bg-amber-700 text-white text-xl font-semibold p-5"> <Navlink href="/register">Register</Navlink> </button>
             </>
           )}
         </div>
@@ -73,9 +69,9 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <button className="btn btn-warning text-2xl font-bold"> <Navlink href="/login">Login Now!</Navlink> </button>
+                <button className="btn btn-warning text-2xl font-bold p-6"> <Navlink href="/login">Login Now!</Navlink> </button>
 
-                <button className="btn bg-amber-700 text-white text-2xl font-bold"> <Navlink href="/register">Register</Navlink> </button>
+                <button className="btn bg-amber-700 text-white text-2xl font-bold p-6"> <Navlink href="/register">Register</Navlink> </button>
               </>
             )}
           </div>
