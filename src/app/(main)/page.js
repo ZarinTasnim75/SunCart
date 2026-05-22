@@ -16,6 +16,22 @@ export default function Home() {
 
   const [current, setCurrent] = useState(0);
   const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("Popular");
+  const uniqueCategories = ["Popular"];
+
+  categories.forEach((product) => {
+    if (!uniqueCategories.includes(product.category)) {
+      uniqueCategories.push(product.category);
+    }
+  });
+
+ let filteredProducts = categories.slice(0, 3);
+
+if (selectedCategory !== "Popular") {
+  filteredProducts = categories.filter((product) => {
+    return product.category === selectedCategory;
+  });
+}
 
   const nextSlide = () => {
     setCurrent((prev) => (prev + 1) % slides.length);
@@ -55,7 +71,6 @@ export default function Home() {
     getProducts();
   }, []);
 
-
   return (
     <div>
       <div className="relative w-full overflow-hidden">
@@ -81,8 +96,10 @@ export default function Home() {
       </div>
 
       <div className="container mx-auto grid grid-cols-4 gap-5 my-[60px]">
-        <LeftSideBar categories={categories} activeId={null}/>
-        <RightSideBar/>
+
+        <LeftSideBar categories={uniqueCategories}  selectedCategory={selectedCategory}  setSelectedCategory={setSelectedCategory} />
+
+        <RightSideBar products={filteredProducts} />
       </div>
     </div>
   );
