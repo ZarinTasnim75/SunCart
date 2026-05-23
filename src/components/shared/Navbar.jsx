@@ -21,7 +21,7 @@ const Navbar = () => {
           </li>
 
           <li>
-            <Navlink href="/products">Products</Navlink>
+            <Navlink href="/allproduct">Products</Navlink>
           </li>
 
           <li>
@@ -55,7 +55,7 @@ const Navbar = () => {
           <ul className="flex flex-col gap-4 text-amber-900">
             <li> <Navlink href="/">Home</Navlink> </li>
 
-            <li> <Navlink href="/products">Products</Navlink> </li>
+            <li> <Navlink href="/allproduct">Products</Navlink> </li>
 
             <li> <Navlink href="/my_profile">My Profile</Navlink> </li>
           </ul>

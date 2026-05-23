@@ -3,13 +3,10 @@
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-import Navbar from "@/components/shared/Navbar";
-import Footer from "@/components/Footer";
 
 const LoginPage = () => {
   return (
     <div>
-    <Navbar/>
     <div className="min-h-screen flex items-center justify-center bg-amber-50 p-4">
       
       <div className="w-full max-w-md bg-white rounded-xl p-5">
@@ -48,7 +45,6 @@ const LoginPage = () => {
 
       </div>
     </div>
-    <Footer/>
     </div>
   );
 };

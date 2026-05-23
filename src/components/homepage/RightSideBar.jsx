@@ -8,16 +8,16 @@ const RightSideBar = ({ products }) => {
       
       <h2 className="font-bold text-center text-2xl bg-amber-200 text-amber-900 rounded-md py-3 mb-5">  Products  </h2>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         
         {products.map((product) => (
           <div key={product.id} className="bg-white rounded-2xl border border-amber-400" >
             
             <div className="p-4 flex justify-center">
-              <img src={product.image} alt={product.name} className="object-contain" /> </div>
+              <img src={product.image} alt={product.name} className="h-40 w-full object-cover rounded-lg" /> </div>
 
-            <div className="p-4">
-              <h2 className="text-xl font-bold text-gray-800">  {product.name} </h2>
+            <div className="p-3">
+              <h2 className="text-lg font-bold text-gray-800">  {product.name} </h2>
               <p className="text-gray-500 text-sm mt-1"> {product.brand} </p>
               <p className="text-gray-600 text-sm mt-2"> {product.description} </p>
               <div className="flex justify-between items-center mt-4">

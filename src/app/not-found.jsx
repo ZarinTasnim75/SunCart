@@ -20,8 +20,7 @@ const NotFound = () => {
                     <div className="flex flex-col items-center justify-center py-4 ">
                         <span className="loading loading-infinity loading-xl"></span> </div>
                     <div>
-                        <Link
-                            href="/" className="inline-block px-8 py-3 text-sm font-bold  uppercase bg-gradient-to-r from-yellow-500 to-orange-600 text-black rounded-lg ">
+                        <Link  href="/" className="inline-block px-8 py-3 text-sm font-bold  uppercase bg-gradient-to-r from-yellow-500 to-orange-600 text-black rounded-lg ">
                             Back to Suncart
                         </Link>
                     </div>
