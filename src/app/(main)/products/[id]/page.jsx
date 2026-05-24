@@ -1,12 +1,48 @@
+"use client";
 import React from 'react';
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+
 
 const DetailsPage = () => {
+
+    const { id } = useParams();
+
+  const [product, setProduct] = useState(null);
+
+  useEffect(() => {
+
+    async function getProduct() {
+
+      const res = await fetch("/productData.json");
+
+      const data = await res.json();
+
+      const singleProduct = data.find(
+        (item) => item.id === parseInt(id)
+      );
+
+      setProduct(singleProduct);
+    }
+
+    getProduct();
+
+  }, [id]);
+
+  if (!product) {
+    return (
+      <div className="text-center text-2xl py-20">
+        Loading <span className="loading loading-bars loading-xl"></span>
+      </div>
+    );
+  }
+
     return (
         <div className="container mx-auto py-10 px-5">
             <div className="grid md:grid-cols-2 gap-10 items-center bg-white shadow-lg rounded-2xl p-8">
 
                 <div>
-                    <img src={product.image} alt={product.name} className="w-full h-[400px] object-cover rounded-xl"/> </div>
+                    <img src= {product.image} alt={product.name} className="w-full h-[400px] object-cover rounded-xl"/> </div>
 
                 <div>
                     <h1 className="text-4xl font-bold text-gray-800">  {product.name} </h1>
