@@ -75,7 +75,7 @@ if (selectedCategory !== "Popular") {
     <div>
       <div className="relative w-full overflow-hidden">
         <div className="flex justify-center">
-          <Image src={slides[current].image} alt={slides[current].alt} className="w-full h-140 object-contain p-6 md:p-13" />
+          <Image src={slides[current].image} alt={slides[current].alt} className="w-full h-140 object-contain p-6 md:p-13" priority/>
         </div>
 
         <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 justify-between">

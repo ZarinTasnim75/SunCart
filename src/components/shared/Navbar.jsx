@@ -5,15 +5,18 @@ import logo from "@/assets/logo.png";
 import avatar from "@/assets/user.png";
 import Navlink from "./Navlink";
 import { FaBars } from "react-icons/fa";
+import { authClient } from "@/lib/auth-client";
 
 const Navbar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const {data: session, isPending }= authClient.useSession();
+  const user = session?.user;
+  console.log(user,"user");
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <nav className="w-full shadow-sm bg-white px-4 md:px-8 py-3">
       <div className="flex items-center justify-between">
-        <Image src={logo} width={170} height={50} alt="logo"/>
+        <Image src={logo} width={170} height={50} alt="logo"  className="w-auto h-auto"/>
 
         <ul className="hidden md:flex items-center gap-6 text-amber-900 font-medium">
           <li>
@@ -30,13 +33,14 @@ const Navbar = () => {
         </ul>
 
         <div className="hidden md:flex items-center gap-3">
-          {isLoggedIn ? (
+          { isPending? (  <span className="loading loading-ring loading-md"></span>
+          ) : user ? (
             <>
               <Image src={avatar} width={45} height={45} alt="user-avatar" className="rounded-full border" />
+              <p>Hello {user.name}</p>
 
-              <button onClick={() => setIsLoggedIn(false)} className="btn bg-red-500 text-white border-none" >
-                {" "}
-                Logout{" "}
+              <button onClick={async ()=> await authClient.signOut()} className="btn bg-red-500 text-white border-none" >
+                Logout
               </button>
             </>) : (
             <>
@@ -61,11 +65,11 @@ const Navbar = () => {
           </ul>
 
           <div className="mt-4 flex flex-col gap-3">
-            {isLoggedIn ? (
+            {user ? (
               <>
                 <Image src={avatar} width={40} height={40} alt="avatar" className="rounded-full" />
 
-                <button onClick={() => setIsLoggedIn(false)} className="btn btn-error"> Logout </button>
+                <button onClick={ async() => await authClient.signOut()} className="btn btn-error"> Logout </button>
               </>
             ) : (
               <>

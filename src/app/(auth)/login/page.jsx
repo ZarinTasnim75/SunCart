@@ -1,15 +1,28 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { FaGithub } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaGithub } from "react-icons/fa";
 import { useForm } from "react-hook-form";
+import { authClient } from "@/lib/auth-client";
 
 const LoginPage = () => {
 
   const {register, handleSubmit,formState: {errors}} =useForm();
-  const handleLoginFunc = (data)=> {
+
+  const [isShowPass, setIsShowPass]= useState(false)
+
+  const handleLoginFunc = async (data)=> {
    console.log(data,"data")
+
+   const { data : res, error } = await authClient.signIn.email({
+    email: data.email,
+    password: data.password, 
+    rememberMe: true,
+    callbackURL: "/",
+});
+
+  console.log(res, error);
  };
 
   return (
@@ -32,11 +45,14 @@ const LoginPage = () => {
        {errors.email && (<p className="text-red-500">{errors.email.message}</p>)}
         </div>
 
-        <div className="mb-2">
+        <div className="mb-2 relative">
           <h4 className="block text-gray-700 font-bold mb-2"> Password</h4>
 
-          <input type="password" name="password" placeholder="Enter your password" className="w-full border border-gray-300 rounded-xl px-4 py-3"  
+          <input type={isShowPass ? "text" : "password"} name="password" placeholder="Enter your password" className="w-full border border-gray-300 rounded-xl px-4 py-3"  
           {...register("password", {required: "Password field is required"})} />
+          <span className="absolute right-5 top-12 cursor-pointer" onClick={()=> setIsShowPass(!isShowPass)}>
+            {isShowPass ? <FaEye /> : <FaEyeSlash />}
+          </span>
           {errors.password && (<p className="text-red-500">{errors.password.message}</p>)}
         </div>
 
