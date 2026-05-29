@@ -1,13 +1,18 @@
 "use client";
+
 import { authClient } from "@/lib/auth-client";
+import Link from "next/link";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const RegisterPage = () => {
 
   const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -19,23 +24,42 @@ const RegisterPage = () => {
 
   const handleRegisterFunc = async (data) => {
 
-    const { email, name, password } = data;
+    const { email, name, password, photoURL } = data;
 
     const { data: res, error } = await authClient.signUp.email({
       name,
       email,
       password,
+      image: photoURL,
       callbackURL: "/",
     });
 
     if (error) {
-      alert(error.message);
+      toast.error(error.message || "Registration failed", {
+        duration: 3000,
+      });
+
+      return;
     }
 
-    if (res) {
-      alert("Signup successful");
+    toast.success("Signup successful", {
+      duration: 3000,
+    });
 
-      router.push("/login");
+    router.push("/login");
+  };
+
+  const handleGoogle = async () => {
+    try {
+      await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/",
+      });
+
+    } catch (error) {
+      toast.error("Google login failed", {
+        duration: 3000,
+      });
     }
   };
 
@@ -49,7 +73,7 @@ const RegisterPage = () => {
         </h2>
 
         <p className="text-center mb-8 text-gray-500">
-          Register an account
+          Register your account
         </p>
 
         <form onSubmit={handleSubmit(handleRegisterFunc)}>
@@ -94,6 +118,24 @@ const RegisterPage = () => {
                 {errors.email.message}
               </p>
             )}
+          </div>
+
+          <div className="mb-4">
+            <h4 className="block text-gray-700 font-bold mb-2">
+              Photo URL </h4>
+
+            <input
+              type="text"
+              placeholder="Enter photo url"
+              className="w-full border border-gray-300 rounded-xl px-4 py-3"
+              {...register("photoURL", {
+                required: "Photo URL is required",
+              })} />
+
+            {errors.photoURL && (
+              <p className="text-red-500 mt-1">
+                {errors.photoURL.message}
+              </p>)}
           </div>
 
           <div className="mb-4 relative">
@@ -162,6 +204,26 @@ const RegisterPage = () => {
           </button>
 
         </form>
+
+        <p className="text-center my-5 text-gray-400 text-sm">
+          OR
+        </p>
+
+        <button
+          onClick={handleGoogle}
+          className="w-full flex justify-center items-center gap-3 border border-gray-300 py-3 rounded-xl hover:bg-gray-100 transition" >
+          <FcGoogle size={22} />
+
+          <span className="font-medium">
+            Continue with Google
+          </span>
+        </button>
+
+        <p className="text-center text-sm text-gray-600 mt-6">
+          Already have an account?{" "}
+
+          <Link href="/login" className="text-amber-600 font-semibold"> Login </Link> </p>
+
       </div>
     </div>
   );

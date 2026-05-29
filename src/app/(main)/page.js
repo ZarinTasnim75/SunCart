@@ -6,6 +6,7 @@ import sunglass from "@/assets/sunglass.png";
 import summer from "@/assets/summer.png";
 import LeftSideBar from "@/components/homepage/LeftSideBar";
 import RightSideBar from "@/components/homepage/RightSideBar";
+import ExtraSec from "@/components/shared/ExtraSec";
 
 export default function Home() {
   const slides = [
@@ -84,11 +85,13 @@ if (selectedCategory !== "Popular") {
         </div>
       </div>
 
-      <div className="container mx-auto grid grid-cols-4 gap-5 my-[60px]">
+      <div className="container mx-auto p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 my-[10px]">
 
-        <LeftSideBar categories={uniqueCategories}  selectedCategory={selectedCategory}  setSelectedCategory={setSelectedCategory} />
-
+        <LeftSideBar categories={uniqueCategories}  selectedCategory={selectedCategory}  setSelectedCategory={setSelectedCategory}/>
         <RightSideBar products={filteredProducts} />
+      </div>
+      <div>
+                <ExtraSec></ExtraSec>
       </div>
     </div>
   );
