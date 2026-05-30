@@ -19,8 +19,8 @@ Key Features:
 8. Protected routes (product details open only for logged-in users)
 
 Tech Stack:
- Next.js (App Router)
- Tailwind CSS
- DaisyUI (UI components)
- Better Auth (authClient)
- JSON-based product data 
+i. Next.js (App Router)
+ii. Tailwind CSS
+iii. DaisyUI (UI components)
+iv. Better Auth (authClient)
+v. JSON-based product data 
