@@ -23,9 +23,7 @@ const Navbar = () => {
 
         <ul className="hidden md:flex items-center gap-6 text-amber-900 font-medium">
           <li> <Navlink href="/">Home</Navlink> </li>
-
           <li>  <Navlink href="/allproduct">Products</Navlink>  </li>
-
           <li> <Navlink href="/my_profile">My Profile</Navlink> </li>
         </ul>
 
@@ -44,8 +42,6 @@ const Navbar = () => {
             <>
               <button className="btn btn-warning text-xl font-bold p-5 "> 
               <Navlink href="/login" className="btn btn-warning text-xl font-bold p-5">Login Now!</Navlink> </button>
-
-              <button className="btn bg-amber-700 text-white text-xl font-semibold p-5"> <Navlink href="/register">Register</Navlink> </button>
             </>
           )}
         </div>
@@ -74,7 +70,6 @@ const Navbar = () => {
             ) : (
               <>
                 <button className="btn btn-warning text-2xl font-bold p-6"> <Navlink href="/login">Login Now!</Navlink> </button>
-                <button className="btn bg-amber-700 text-white text-2xl font-bold p-6"> <Navlink href="/register">Register</Navlink> </button>
               </>
             )}
           </div>

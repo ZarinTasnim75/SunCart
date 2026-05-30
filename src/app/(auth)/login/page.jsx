@@ -5,8 +5,9 @@ import { FcGoogle } from "react-icons/fc";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { authClient } from "@/lib/auth-client";
-import Link from "next/link";
 import toast from "react-hot-toast";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
 
@@ -14,33 +15,42 @@ const LoginPage = () => {
 
   const [isShowPass, setIsShowPass] = useState(false)
 
-const handleLoginFunc = async (data) => {
+  const router = useRouter();
 
-  const { data: res, error } = await authClient.signIn.email({
-    email: data.email,
-    password: data.password,
-    rememberMe: true,
-    callbackURL: "/",
-  });
+  const searchParams = useSearchParams();
 
-  if (error) {
-    toast.error(error.message || "Login failed");
-    return;
-  }
+  const redirectPath =
+    searchParams.get("redirect") || "/";
 
-  toast.success("Login successful");
-};
+  const handleLoginFunc = async (data) => {
 
- const handleGoogle = async () => {
-  try {
-    const data = await authClient.signIn.social({
-      provider: "google",
+    const { data: res, error } = await authClient.signIn.email({
+      email: data.email,
+      password: data.password,
+      rememberMe: true,
+      callbackURL: redirectPath,
     });
 
-  } catch (error) {
-    toast.error("Google login failed");
-  }
-};
+    if (error) {
+      toast.error(error.message || "Login failed");
+      return;
+    }
+
+    toast.success("Login successful");
+  };
+
+  const handleGoogle = async () => {
+    try {
+      const data = await authClient.signIn.social({
+        provider: "google",
+        callbackURL: redirectPath,
+      });
+
+    } catch (error) {
+      toast.error("Google login failed");
+    }
+  };
+
 
   return (
     <div>
@@ -77,19 +87,20 @@ const handleLoginFunc = async (data) => {
               <p className="text-sm text-amber-600 "> Forgot Password? </p>
             </div>
 
-            <button className="w-full bg-amber-500 text-white font-semibold py-3 rounded-xl "> Login </button></form>
+            <button className="w-full bg-amber-500 text-white font-semibold py-3 rounded-xl cursor-pointer"> Login </button>
 
-          <p className="text-center my-5 px-4 text-gray-400 text-sm">OR</p>
+            <p className="text-center my-5 px-4 text-gray-400 text-sm">OR</p>
 
-          <button onClick={handleGoogle} className="w-full flex justify-center gap-3 border border-gray-300 py-2 rounded-xl hover:bg-gray-100 mb-4"> <FcGoogle size={22} />
-            <span className="font-medium"> Login with Google </span>
-          </button>
+            <button type="button" onClick={handleGoogle} className="w-full flex justify-center gap-3 border border-gray-300 py-2 rounded-xl hover:bg-gray-100 mb-4"> <FcGoogle size={22} />
+              <span className="font-medium"> Login with Google </span>
+            </button>
 
-          <p className="text-sm text-gray-600 py-5"> If don't have an account :-</p>
-          <div className="w-full text-center bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 rounded-xl transition">
+            <p className="text-sm text-gray-600 py-5"> If don't have an account :-</p>
 
-            <Link href="/register" className="font-medium "> Register </Link>
-          </div>
+            <button type="button" onClick={() => router.push("/register")}
+              className="w-full bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 rounded-xl transition" >
+              Register  </button>
+          </form>
         </div>
       </div>
     </div>

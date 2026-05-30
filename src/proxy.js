@@ -10,8 +10,11 @@ export default async function proxy(request) {
   if (session) {
     return NextResponse.next();
   }
-    
-  return NextResponse.redirect(new URL("/login", request.url));
+   const DesireUrl = new URL("/login", request.url);
+
+  DesireUrl.searchParams.set("redirect", request.nextUrl.pathname);
+
+  return NextResponse.redirect(DesireUrl);
 }
 
 export const config = {
