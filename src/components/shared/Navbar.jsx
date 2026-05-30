@@ -5,9 +5,10 @@ import Image from "next/image";
 import logo from "@/assets/logo.png";
 import avatar from "@/assets/user.png";
 import Navlink from "./Navlink";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaShoppingCart } from "react-icons/fa";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const Navbar = () => {
   const { data: session, isPending } = authClient.useSession();
@@ -28,6 +29,8 @@ const Navbar = () => {
         </ul>
 
         <div className="hidden md:flex items-center gap-3">
+          <Link href="/cart" className="relative text-2xl text-amber-900">
+            <FaShoppingCart />  </Link>
           {isPending ? (<span className="loading loading-ring loading-md"></span>
           ) : user ? (
             <>
@@ -40,8 +43,8 @@ const Navbar = () => {
               }}> Logout </button>
             </>) : (
             <>
-              <button className="btn btn-warning text-xl font-bold p-5 "> 
-              <Navlink href="/login" className="btn btn-warning text-xl font-bold p-5">Login Now!</Navlink> </button>
+              <button className="btn btn-warning text-xl font-bold p-5 ">
+                <Navlink href="/login" className="btn btn-warning text-xl font-bold p-5">Login Now!</Navlink> </button>
             </>
           )}
         </div>
@@ -49,7 +52,7 @@ const Navbar = () => {
         <button className="md:hidden text-3xl" onClick={() => setMenuOpen(!menuOpen)} > <FaBars size={25} /> </button>
       </div>
 
-      { menuOpen && (
+      {menuOpen && (
         <div className="md:hidden mt-4 bg-white p-4 rounded-lg shadow">
           <ul className="flex flex-col gap-4 text-amber-900">
             <li> <Navlink href="/">Home</Navlink> </li>
@@ -63,9 +66,10 @@ const Navbar = () => {
             {user ? (
               <>
                 <Image src={user.image || avatar} width={40} height={40} alt="avatar" className="rounded-full" />
-                 <button className="btn btn-warning text-xl font-bold p-5 " onClick={async () => {await authClient.signOut();
-                 router.push("/login");
-                  }} > Logout </button>
+                <button className="btn btn-warning text-xl font-bold p-5 " onClick={async () => {
+                  await authClient.signOut();
+                  router.push("/login");
+                }} > Logout </button>
               </>
             ) : (
               <>

@@ -1,3 +1,7 @@
+import dns from "node:dns";
+dns.setServers(['8.8.8.8' , '8.8.4.4']);
+
+import "animate.css";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -14,6 +18,9 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "SunCart",
   description: "Best summer shop in Bangladesh",
+  icons: {
+    icon:"/favicon.ico",
+  },
 };
 
 export default function RootLayout({ children }) {
