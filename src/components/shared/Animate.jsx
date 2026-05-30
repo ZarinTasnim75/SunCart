@@ -1,4 +1,6 @@
 "use client";
+
+import "animate.css";
 import React from 'react';
 
 const Animate = () => {
