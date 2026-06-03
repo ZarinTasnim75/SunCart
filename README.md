@@ -6,7 +6,7 @@ It allows users to browse summer products, view product details, create and mana
 
 The goal of this project is to demonstrate a real-world shopping experience with clean UI and authentication-based user features.
 
-Live URL: 
+Live URL: https://sun-cart-iztv.vercel.app/
 
 Key Features:
 1. Displaying products with dynamic data
