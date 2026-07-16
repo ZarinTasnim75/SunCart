@@ -20,9 +20,13 @@ The goal of this project is to demonstrate a real-world shopping experience with
 
 ## 🛠️ Tech Stack:
 i. Next.js (App Router)
+
 ii. Tailwind CSS
+
 iii. DaisyUI (UI components)
+
 iv. Better Auth (authClient)
+
 v. JSON-based product data 
 
 
