@@ -1,4 +1,4 @@
-Project Name: SunCart
+## Project Name: SunCart
 
 ## Purpose: 
 Suncart is a modern e-commerce web application built with Next.js.
@@ -34,19 +34,18 @@ v. JSON-based product data
 
 ```json
 {
-  "next": "^16.x",
-  "react": "^19.x",
-  "react-dom": "^19.x",
-  "tailwindcss": "^4.x",
-  "daisyui": "^5.x",
-  "better-auth": "^1.x",
-  "motion": "^12.x"
+    "@better-auth/mongo-adapter": "^1.6.11",
+    "animate.css": "^4.1.1",
+    "better-auth": "^1.6.11",
+    "mongodb": "^7.2.0",
+    "next": "16.2.6",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "react-hook-form": "^7.76.1",
+    "react-hot-toast": "^2.6.0",
+    "react-icons": "^5.6.0"
 }
 ```
-
-> *Update the versions according to your `package.json`.*
-
----
 
 ## 🚀 Run Locally
 
